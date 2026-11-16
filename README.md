@@ -118,3 +118,16 @@ git push -u origin main
 메인의 활동 요약은 `CompactActivities`, 전체 활동 페이지는 기존 `ActivityList`를 사용해 UI를 독립적으로 유지합니다.
 
 01번 영상은 교체된 1080p/30fps 원본의 비디오·오디오 스트림을 재압축 없이 복사하고 faststart만 적용했습니다. 영상과 썸네일 URL에 파일 해시 버전값을 사용하여 이전 파일 캐시를 방지합니다. 활동에는 꿈장학(2019.03.02–2022.02.28), 대학희망장학(2022.02.28–진행 중) 장학생 이력을 추가했습니다.
+
+## GitHub Pages 배포 (Portfolio_2026)
+
+현재 저장소의 공개 주소는 https://byeonyonggyu.github.io/Portfolio_2026/ 입니다. GitHub Pages는 Vite 원본 TSX를 변환하지 않으므로 main 브랜치 루트를 그대로 공개하면 흰 화면이 발생합니다.
+
+1. 변경 파일을 commit/push합니다.
+2. 저장소 **Settings → Pages → Build and deployment → Source**를 **GitHub Actions**로 변경합니다. Deploy from a branch를 사용하지 마세요.
+3. **Actions → Deploy portfolio to GitHub Pages**의 실행 결과를 확인합니다. 필요하면 **Run workflow**를 눌러 main에서 실행합니다.
+4. 성공 후 공개 주소를 강력 새로고침(Ctrl+Shift+R)합니다. 이후 main push마다 자동 빌드/배포됩니다.
+
+워크플로는 Node 24, pnpm 11.25.0 및 잠금 파일로 의존성을 설치하고 `pnpm build:pages`로 `.pages-build/`를 생성합니다. Vite base 및 BrowserRouter basename은 `/Portfolio_2026/`로 설정되며, 이미지·영상·로고도 이 경로를 따릅니다. 작품 목록, 타임라인, 각 작품 상세에 실제 index.html을 생성해 직접 접근/새로고침을 지원합니다. 알 수 없는 경로에는 404.html에서 앱의 404 화면을 표시합니다.
+
+로컬 `pnpm dev`, Go Live 빌드 및 Vercel 빌드는 `/` 경로를 유지합니다. 향후 저장소 이름을 바꾸거나 GitHub Pages에 개인 도메인을 연결하면 `vite.config.ts`의 github-pages base도 그 주소에 맞게 변경하세요. 개인 도메인 루트에서는 `/`입니다.

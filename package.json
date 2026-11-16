@@ -9,7 +9,8 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "build:live": "tsc --noEmit && vite build --outDir .live-preview",
-    "watch:live": "vite build --watch --outDir .live-preview"
+    "watch:live": "vite build --watch --outDir .live-preview",
+    "build:pages": "tsc --noEmit && vite build --mode github-pages --outDir .pages-build && node scripts/prepare-pages.mjs"
   },
   "dependencies": {
     "react": "^19.2.0",

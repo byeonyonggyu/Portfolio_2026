@@ -5,6 +5,7 @@ dist/
 .previous-build/
 .verified-build/
 .live-preview/
+.pages-build/
 .media-tools/
 .media-review/
 .vercel/

@@ -4,6 +4,7 @@ import { profile } from './data/profile';
 import { projects } from './data/projects';
 import { activities } from './data/activities';
 import { toolLogos } from './data/tools';
+import { assetUrl } from './lib/assetUrl';
 import type { Activity, Media, Project } from './types';
 
 const date = (value: string) => value.replaceAll('-', '.');
@@ -16,7 +17,7 @@ function Placeholder({ label, index = '01', className = '' }: { label: string; i
   return <div className={`placeholder ${className}`} role="img" aria-label={label}><span className="placeholder-top">VFX / MEDIA PLACEHOLDER</span><span className="placeholder-number" aria-hidden="true">{index}</span><span className="placeholder-bottom"><span className="cross" aria-hidden="true">＋</span>{label}<span aria-hidden="true">↗</span></span></div>;
 }
 function Picture({ src, label, index }: { src?: string; label: string; index?: string }) {
-  return src ? <img className="media-image" src={src} alt={label} width="1600" height="900" loading="lazy" /> : <Placeholder label={label} index={index} />;
+  return src ? <img className="media-image" src={assetUrl(src)} alt={label} width="1600" height="900" loading="lazy" /> : <Placeholder label={label} index={index} />;
 }
 function embedUrl(media: Media): string | undefined {
   try {
@@ -38,7 +39,7 @@ function Player({ media, title, poster }: { media?: Media; title: string; poster
   useEffect(() => { if (playing) (frameRef.current || videoRef.current)?.focus(); }, [playing]);
   const embed = media ? embedUrl(media) : undefined;
   if (!media) return <div className="player"><Picture src={poster} label={`${title} 영상 교체 위치`} /><span className="media-note">영상 준비 중 · 콘텐츠 파일에서 추가해 주세요</span></div>;
-  return <div className="player">{playing ? media.kind === 'file' ? <video ref={videoRef} tabIndex={0} src={media.src} poster={media.poster || poster} controls autoPlay playsInline preload="metadata" aria-label={title} /> : embed ? <iframe ref={frameRef} src={embed} title={media.label || title} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" /> : <p className="video-error">영상 주소를 확인해 주세요.</p> : <><Picture src={media.poster || poster} label={`${title} 영상 썸네일`} /><button className="play-overlay" onClick={() => setPlaying(true)}><span aria-hidden="true">▶</span><span>{title} 재생</span></button></>}</div>;
+  return <div className="player">{playing ? media.kind === 'file' ? <video ref={videoRef} tabIndex={0} src={assetUrl(media.src)} poster={assetUrl(media.poster || poster)} controls autoPlay playsInline preload="metadata" aria-label={title} /> : embed ? <iframe ref={frameRef} src={embed} title={media.label || title} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" /> : <p className="video-error">영상 주소를 확인해 주세요.</p> : <><Picture src={media.poster || poster} label={`${title} 영상 썸네일`} /><button className="play-overlay" onClick={() => setPlaying(true)}><span aria-hidden="true">▶</span><span>{title} 재생</span></button></>}</div>;
 }
 function SectionHeading({ number, title, subtitle, href, link }: { number: string; title: string; subtitle: string; href?: string; link?: string }) {
   return <div className="section-heading"><div>{(number || subtitle) && <p className="eyebrow">{number}{number && subtitle && " / "}{subtitle}</p>}<h2>{title}</h2></div>{href && <Link className="text-link" to={href}>{link} <span>↗</span></Link>}</div>;
@@ -50,7 +51,7 @@ function ActivityList({ items }: { items: Activity[] }) {
   return <ol className="timeline-list">{items.map(item => <li className={item.featured ? 'featured' : ''} key={item.id}><div className="timeline-date"><span>{period(item.startDate, item.endDate)}</span>{item.featured && <span className="highlight-label">주요 활동</span>}</div><div className="timeline-body"><p className="eyebrow">{item.category}{item.sample && ' / 샘플'}</p><h3>{item.title}</h3>{item.role && <p className="role">{item.role}</p>}{item.description && <p>{item.description}</p>}{item.outcomes.length > 0 && <ul className="outcomes">{item.outcomes.map(outcome => <li key={outcome}>{outcome}</li>)}</ul>}<div className="activity-links">{item.projectSlug && projects.some(p => p.slug === item.projectSlug) && <Link className="text-link" to={`/works/${item.projectSlug}`}>작품 보기 ↗</Link>}{item.externalUrl && <External href={item.externalUrl}>관련 링크</External>}</div></div></li>)}</ol>;
 }
 function ToolList({ tools }: { tools: string[] }) {
-  return <ul className="tool-list" aria-label="사용 도구">{tools.map(tool => <li key={tool}>{toolLogos[tool] && <img src={toolLogos[tool].src} className={toolLogos[tool].wide ? 'wide-logo' : ''} width={toolLogos[tool].wide ? 100 : 24} height="24" alt="" />}<span>{tool}</span></li>)}</ul>;
+  return <ul className="tool-list" aria-label="사용 도구">{tools.map(tool => <li key={tool}>{toolLogos[tool] && <img src={assetUrl(toolLogos[tool].src)} className={toolLogos[tool].wide ? 'wide-logo' : ''} width={toolLogos[tool].wide ? 100 : 24} height="24" alt="" />}<span>{tool}</span></li>)}</ul>;
 }
 function CompactActivities() {
   return <ol className="compact-activities">{sortedActivities.map(item => <li key={item.id}><time>{period(item.startDate, item.endDate)}</time><span className="compact-category">{item.category}</span><span className="compact-title">{item.title}{item.outcomes.length > 0 && <span className="compact-outcome"> · {item.outcomes.join(' · ')}</span>}{item.role && <span className="compact-role"> · {item.role}</span>}</span></li>)}</ol>;
@@ -76,7 +77,7 @@ function Home() {
       <div className="project-grid">{projects.filter(p => p.featured).slice(0, 5).map(project => <ProjectCard key={project.id} project={project} />)}</div>
     </section>
     {profile.skills.length > 0 && <section className="section page-width"><h2>주요 역량</h2><div className="skills-grid">{profile.skills.map(skill => <article key={skill.title}><h3>{skill.title}</h3><p>{skill.description}</p></article>)}</div>{profile.tools.length > 0 && <ToolList tools={profile.tools} />}</section>}
-    <section id="about" className="section page-width"><h2>소개 및 연락처</h2>{profile.about && <p>{profile.about}</p>}<div className="contact-links">{profile.email && <a href={`mailto:${profile.email}`}>{profile.email}</a>}{profile.resume && <a href={profile.resume} target="_blank" rel="noopener noreferrer">이력서 보기 ↗</a>}{profile.artstation && <External href={profile.artstation}>ArtStation</External>}{profile.github && <External href={profile.github}>GitHub</External>}</div>{!profile.email && <p className="muted">연락처 준비 중</p>}</section>
+    <section id="about" className="section page-width"><h2>소개 및 연락처</h2>{profile.about && <p>{profile.about}</p>}<div className="contact-links">{profile.email && <a href={`mailto:${profile.email}`}>{profile.email}</a>}{profile.resume && <a href={assetUrl(profile.resume)} target="_blank" rel="noopener noreferrer">이력서 보기 ↗</a>}{profile.artstation && <External href={profile.artstation}>ArtStation</External>}{profile.github && <External href={profile.github}>GitHub</External>}</div>{!profile.email && <p className="muted">연락처 준비 중</p>}</section>
   </>;
 }
 function Works() {
