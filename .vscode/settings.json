@@ -1,0 +1,9 @@
+{
+  "liveServer.settings.root": "/.live-preview",
+  "liveServer.settings.file": "index.html",
+  "liveServer.settings.ignoreFiles": [
+    ".vscode/**",
+    "**/node_modules/**",
+    "**/.pnpm-store/**"
+  ]
+}

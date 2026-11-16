@@ -1,0 +1,14 @@
+node_modules/
+.pnpm-store/
+.install-backup/
+dist/
+.previous-build/
+.verified-build/
+.live-preview/
+.media-tools/
+.media-review/
+.vercel/
+.env*
+!.env.example
+*.log
+Asset/
