@@ -1,11 +1,12 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { projects } from '../src/data/projects.ts';
+import { gameProjects } from '../src/data/gameProjects.ts';
 
-const output = new URL('../.pages-build/', import.meta.url);
+const output = new URL(`../${process.argv[2] || '.pages-build'}/`, import.meta.url);
 const html = await readFile(new URL('index.html', output), 'utf8');
 // Pages has no SPA rewrite. Generate an entry at each known route so direct
 // visits and refreshes return HTTP 200 while keeping BrowserRouter URLs.
-for (const route of ['works', 'timeline', ...projects.map(p => `works/${p.slug}`)]) {
+for (const route of ['works', 'timeline', ...projects.map(p => `works/${p.slug}`), ...gameProjects.map(p => `projects/${p.slug}`)]) {
   if (!/^[a-z0-9/-]+$/.test(route)) throw new Error(`Invalid route: ${route}`);
   const directory = new URL(`${route}/`, output);
   await mkdir(directory, { recursive: true });

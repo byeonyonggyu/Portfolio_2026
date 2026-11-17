@@ -8,8 +8,8 @@
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "build:live": "tsc --noEmit && vite build --outDir .live-preview",
-    "watch:live": "vite build --watch --outDir .live-preview",
+    "build:live": "tsc --noEmit && vite build --mode live-preview --outDir .preview-live",
+    "watch:live": "vite build --watch --mode live-preview --outDir .preview-live",
     "build:pages": "tsc --noEmit && vite build --mode github-pages --outDir .pages-build && node scripts/prepare-pages.mjs"
   },
   "dependencies": {

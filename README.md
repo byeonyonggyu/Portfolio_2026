@@ -18,14 +18,14 @@ pnpm preview
 
 ## VS Code의 Go Live 사용
 
-Go Live는 TypeScript/TSX 변환을 하지 않으므로 프로젝트 루트의 원본 HTML을 그대로 제공하면 앱이 실행되지 않습니다. 이 프로젝트의 VS Code 설정은 서버 루트를 빌드 결과물인 `.live-preview/`로 지정하고, 상세 URL 새로고침을 위해 `index.html`로 fallback하도록 설정합니다.
+Go Live는 TypeScript/TSX 변환을 하지 않으므로 프로젝트 루트의 원본 HTML을 그대로 제공하면 앱이 실행되지 않습니다. 이 프로젝트의 VS Code 설정은 서버 루트를 빌드 결과물인 `.preview-live/`로 지정하고, 상세 URL 새로고침을 위해 `index.html`로 fallback하도록 설정합니다.
 
 1. VS Code에서 `E:/Portfolio` 폴더 자체를 엽니다.
 2. 최초 또는 소스 수정 후 `pnpm build:live`를 실행합니다. 현재 작업에서는 이 빌드 파일을 생성해 두었습니다.
 3. 이미 Go Live가 실행 중이면 상태 표시줄의 포트를 눌러 중지한 뒤 **Go Live**를 다시 누릅니다. 기존 탭도 새로고침하세요.
 4. 계속 편집할 때는 **Ctrl+Shift+B**로 **Go Live: 변경 사항 자동 빌드** 작업을 실행해 둡니다. 또는 `pnpm watch:live`를 실행합니다. 데이터/코드/CSS 변경 시 다시 빌드되고 Live Server가 새로고침합니다.
 
-개발 중에는 `pnpm dev`가 즉시 반영과 오류 안내를 제공하므로 권장합니다. Go Live는 정적 빌드 확인용으로 지원합니다. `.live-preview/`는 생성물이므로 Git에 넣지 않으며 새 환경에서는 먼저 빌드해야 합니다. Vercel 배포는 기존 `pnpm build` 및 `dist` 설정을 그대로 사용합니다.
+개발 중에는 `pnpm dev`가 즉시 반영과 오류 안내를 제공하므로 권장합니다. Go Live는 정적 빌드 확인용으로 지원합니다. `.preview-live/`는 생성물이므로 Git에 넣지 않으며 새 환경에서는 먼저 빌드해야 합니다. Vercel 배포는 기존 `pnpm build` 및 `dist` 설정을 그대로 사용합니다.
 
 ## 페이지와 데이터 모델
 
@@ -131,3 +131,19 @@ git push -u origin main
 워크플로는 Node 24, pnpm 11.25.0 및 잠금 파일로 의존성을 설치하고 `pnpm build:pages`로 `.pages-build/`를 생성합니다. Vite base 및 BrowserRouter basename은 `/Portfolio_2026/`로 설정되며, 이미지·영상·로고도 이 경로를 따릅니다. 작품 목록, 타임라인, 각 작품 상세에 실제 index.html을 생성해 직접 접근/새로고침을 지원합니다. 알 수 없는 경로에는 404.html에서 앱의 404 화면을 표시합니다.
 
 로컬 `pnpm dev`, Go Live 빌드 및 Vercel 빌드는 `/` 경로를 유지합니다. 향후 저장소 이름을 바꾸거나 GitHub Pages에 개인 도메인을 연결하면 `vite.config.ts`의 github-pages base도 그 주소에 맞게 변경하세요. 개인 도메인 루트에서는 `/`입니다.
+
+## 프로젝트·수상 섹션과 언어 전환
+
+메인의 프로젝트 카드는 `src/data/activities.ts`에서 `category: 프로젝트`인 항목을, 수상 카드는 `category: 수상`인 항목을 최신순으로 자동 표시합니다. 기존 행사 3건은 프로젝트로 분류했습니다. 카드의 상세 이력 링크는 해당 분류가 선택된 타임라인을 엽니다. 이미지/링크가 제공되지 않은 프로젝트는 내용을 임의로 만들지 않고 텍스트 카드로 표시합니다.
+
+상단의 한국어 / English 버튼은 모든 페이지에 적용되며 현재 경로와 필터를 유지합니다. 언어는 localStorage의 `portfolio-language`에 저장됩니다. 브라우저 저장소가 제한된 경우에도 전환 자체는 동작합니다. HTML lang과 문서 제목도 함께 변경됩니다.
+
+UI 번역은 `src/i18n.tsx`, 활동·작품·프로필의 영어 콘텐츠는 `src/data/english.ts`에서 관리합니다. 활동은 id, 작품은 id를 기준으로 원본에 번역을 덮어씌우므로 날짜, 미디어, 연결 주소는 공유합니다. 기관/교육/상 이름은 한국어 원문을 설명하는 영어 번역이며 공식 영문 명칭 확인 시 수정할 수 있습니다. 새 활동/작품을 추가할 때 영어 번역도 함께 작성하세요.
+
+## PROGRESS 프로젝트 상세
+
+`/projects/progress-at-play-2026`에서 임계점의 거실 프로젝트를 소개합니다. 메인 프로젝트 카드 및 전체 활동의 PROGRESS 항목에서 연결됩니다. 게임 소개, 담당 작업, 문제 해결 3건, 사용 기술 및 제작 방식, 배운 점으로 내용을 축약했습니다. 녹화·홍보 자료 제작 과정은 제외했습니다.
+
+콘텐츠와 한국어/영어 번역은 `src/data/gameProjects.ts`, 화면은 `src/GameProjectPage.tsx`에서 관리합니다. 원본 이미지는 `Asset/Projects/PROGRESS/`에 보존하고 웹용 이미지와 작은 썸네일은 `public/images/progress/`에 저장했습니다. 이미지 5장의 원본은 약 5.7MB, 웹용 본문/썸네일 합계는 약 1.1MB입니다.
+
+갤러리는 썸네일 클릭, 좌우 방향키, Home/End, 이전/다음 버튼을 지원합니다. 큰 이미지에서 확대 보기를 열고 닫기 버튼 또는 Esc로 닫을 수 있습니다. 제공되지 않은 다운로드 파일·출시일·리뷰·평가는 표시하지 않습니다. 게임의 AI 개발 보조와 생성형 이미지/음원 활용은 사용 기술에 명시했습니다. GitHub Pages 빌드 시 프로젝트 상세 경로에도 index.html을 생성합니다.

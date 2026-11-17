@@ -1,5 +1,5 @@
 {
-  "liveServer.settings.root": "/.live-preview",
+  "liveServer.settings.root": "/.preview-live",
   "liveServer.settings.file": "index.html",
   "liveServer.settings.ignoreFiles": [
     ".vscode/**",

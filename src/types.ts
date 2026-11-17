@@ -18,3 +18,17 @@ export type Profile = {
   email?: string; artstation?: string; github?: string; resume?: string;
   skills: { title: string; description: string }[];
 };
+export type GameProjectCopy = {
+  title: string; summary: string; tagline: string; tags: string[];
+  facts: { label: string; value: string }[];
+  about: { title: string; description: string }[];
+  responsibilities: string[];
+  solutions: { title: string; description: string }[];
+  tools: { title: string; description: string }[];
+  takeaway: string;
+};
+export type GameProject = {
+  slug: string; activityId: string; event: string;
+  screenshots: { src: string; thumbnail: string; caption: { ko: string; en: string } }[];
+  copy: { ko: GameProjectCopy; en: GameProjectCopy };
+};
