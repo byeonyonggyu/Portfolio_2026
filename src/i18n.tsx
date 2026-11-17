@@ -8,7 +8,7 @@ type Language = 'ko' | 'en';
 const english: Record<string, string> = {
   '홈': 'Home', '활동 기록': 'Activity', '작품': 'Works', '소개': 'About',
   '작품 보기 ↗': 'View work ↗', 'Language / 언어': 'Language',
-  '프로젝트': 'Projects', '수상': 'Awards', '교육': 'Training', '학력': 'Education', '교내활동': 'Campus activities', '장학': 'Scholarships', '스터디': 'Study',
+  '근로': 'Employment', '프로젝트': 'Projects', '수상': 'Awards', '교육': 'Training', '학력': 'Education', '교내활동': 'Campus activities', '장학': 'Scholarships', '스터디': 'Study',
   '개인 포트폴리오': 'Personal portfolio', '활동 기록 보기': 'View activity', '작품 보기': 'View work',
   '전체 활동 보기 →': 'View all activity →', '대표 작품': 'Selected work', '모든 작품 보기': 'View all work',
   '프로젝트 보기': 'View projects', '수상 보기': 'View awards',
@@ -25,7 +25,7 @@ const english: Record<string, string> = {
   '관련 링크': 'Related link', '작품 아카이브': 'Work archive', '완성된 장면과 그 안에 담긴 제작 과정을 살펴보세요.': 'Explore the final visuals and the process behind them.',
   '엔진': 'Engine', '이펙트 유형': 'Effect type', '전체': 'All', '스킬': 'Skill', '전투': 'Combat', '환경': 'Environment',
   '조건에 맞는 항목이 없습니다.': 'No matching items.', '다른 필터를 선택하거나 전체 항목을 확인해 주세요.': 'Try another filter or view all items.', '필터 초기화': 'Reset filters',
-  '학력, 교육, 프로젝트, 교내활동, 수상, 장학과 행사 참가 이력을 최신순으로 기록합니다.': 'Education, training, projects, campus activities, awards, and scholarships, newest first.',
+  '학력, 교육, 프로젝트·근로, 교내활동, 수상, 장학과 행사 참가 이력을 최신순으로 기록합니다.': 'Education, training, projects, employment, campus activities, awards, and scholarships, newest first.',
   '연도': 'Year', '활동 분류': 'Category', '최신순': 'Newest first',
   '← 작품 목록': '← All work', '기획 의도': 'Concept', '제작 과정 & 브레이크다운': 'Process & breakdown',
   '초안과 최종본': 'Draft & final', '초안 이미지 교체 위치': 'Draft image placeholder', '최종 이미지 교체 위치': 'Final image placeholder',

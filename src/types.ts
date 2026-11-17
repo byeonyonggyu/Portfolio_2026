@@ -10,7 +10,8 @@ export type Project = {
   challenges?: string[]; performance?: string[]; credits: { label: string; url?: string }[];
 };
 export type Activity = {
-  id: string; startDate?: string; endDate?: string; category: '프로젝트' | '교육' | '스터디' | '학력' | '교내활동' | '수상' | '행사' | '장학';
+  id: string; startDate?: string; endDate?: string; category: '프로젝트' | '교육' | '스터디' | '학력' | '교내활동' | '수상' | '행사' | '장학' | '근로';
+  secondaryCategory?: '근로';
   title: string; role: string; description: string; outcomes: string[];
   cardSummary?: string;
   awardImage?: string;
@@ -26,6 +27,7 @@ export type GameProjectCopy = {
   facts: { label: string; value: string }[];
   about: { title: string; description: string }[];
   responsibilities: string[];
+  solutionsTitle?: string;
   solutions: { title: string; description: string }[];
   tools: { title: string; description: string }[];
   takeaway: string;

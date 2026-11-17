@@ -147,5 +147,18 @@ export const activities: Activity[] = [
     "role": "",
     "description": "",
     "outcomes": []
+  },
+  {
+    id: 'englink-aicfd', startDate: '2026-03-02', endDate: '2026-06-22',
+    category: '프로젝트', secondaryCategory: '근로', title: '(주)엔글링크 AICFD 모델 제작 작업',
+    role: 'AICFD Unity 프로젝트', cardSummary: '풍환경 분석 UI·건물 시각화 제작',
+    description: '기존 Unity 프로젝트 해석, UI 제작·변환과 C# 건물 머터리얼 색상 제어를 담당했습니다. 주간 미팅을 통해 기술 이슈와 개선 방향을 정리했습니다.',
+    outcomes: [],
+  },
+  {
+    id: 'englink-nasal-slicer', startDate: '2026-09-03', category: '프로젝트', secondaryCategory: '근로',
+    title: '(주)엔글링크 의료용 비강 3D Slicer 작업', role: '3D Slicer 작업',
+    cardSummary: '의료용 비강 3D Slicer 작업 진행 중',
+    description: '의료용 비강 관련 3D Slicer 작업을 진행하고 있습니다. 세부 제작 과정과 포트폴리오 자료는 준비 중입니다.', outcomes: [],
   }
 ];

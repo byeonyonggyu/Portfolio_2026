@@ -185,3 +185,10 @@ UI 번역은 `src/i18n.tsx`, 활동·작품·프로필의 영어 콘텐츠는 `s
 - TeamManyStar와 U&I는 `layout: 'case-study'`로 큰 갤러리, 프로젝트 정보, 담당 작업, 제작 과정을 함께 표시합니다.
 - 첫 이미지: `initialImage`, 카드의 대표 사진: `screenshots[0]`.
 - 수상 사진은 클릭/Enter로 확대하고 닫기 버튼·Esc·배경 클릭으로 닫을 수 있습니다.
+
+
+### 엔글링크 근로 프로젝트
+- AICFD 및 의료용 비강 3D Slicer 상세: `src/data/englinkProjects.ts`.
+- 활동은 `category: '프로젝트'`, `secondaryCategory: '근로'`로 관리하며 타임라인의 두 분류 필터에 모두 포함됩니다.
+- AICFD 자료: `public/images/aicfd/`. 제작 완료 결과와 미팅 당시의 검토·예정 사항을 구분했습니다.
+- 의료용 비강은 작업·자료 준비 중으로 표시합니다. 이미지가 없는 프로젝트도 상세 페이지를 정상 표시하며 추후 `screenshots`에 자료를 추가할 수 있습니다.

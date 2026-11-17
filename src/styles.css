@@ -33,3 +33,5 @@
 @media(max-width:760px){.case-study-project .game-summary,.case-study-project .game-writeup{display:block}.case-study-project .game-metadata{margin-top:20px}.case-study-project .game-tags{margin-top:20px}.case-study-project .game-title h1{font-size:28px}}
 
 .presentation-project .work-breakdown-grid{grid-template-columns:1fr}.presentation-project .breakdown-image img{max-height:650px;object-fit:contain}
+
+.project-pending{padding:48px 28px;border:1px solid var(--line);background:#fafafa}.project-pending h2{font-size:25px}.project-pending p:last-child{margin-bottom:0;color:var(--muted);font-size:14px}

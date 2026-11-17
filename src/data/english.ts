@@ -3,6 +3,8 @@ import type { Activity, Profile, Project } from '../types';
 // English descriptions are translations of the supplied Korean content.
 // Organization names below are descriptive translations, not verified official names.
 export const activityEnglish: Record<string, Partial<Activity>> = {
+  'englink-aicfd': { title: 'Englink — AICFD Model Production Work', role: 'AICFD Unity project', cardSummary: 'Wind-analysis UI and building visualization', description: 'Interpreted Unity files, created and converted UI, and wrote C# building material color control. Reviewed technical issues and improvements in weekly meetings.', outcomes: [] },
+  'englink-nasal-slicer': { title: 'Englink — Nasal Anatomy Work with 3D Slicer', role: '3D Slicer work', cardSummary: 'Medical nasal anatomy work · In progress', description: 'Ongoing medical nasal anatomy work in 3D Slicer. Production details and portfolio materials are in preparation.', outcomes: [] },
   'daesin-high-school': { title: 'Daejeon Daeshin High School — Graduation' },
   'catholic-university': { title: 'The Catholic University of Korea', description: 'Currently enrolled' },
   gadaesarang: { title: 'Gadaesarang, The Catholic University of Korea', role: 'Member', description: 'University development fund promotion club (institutional club)' },

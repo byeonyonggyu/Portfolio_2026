@@ -3,6 +3,7 @@ import { aiverseProject } from './aiverseProject.ts';
 import { museumProject } from './museumProject.ts';
 import { uiProject } from './uiProject.ts';
 import { teamManyStarProject } from './teamManyStarProject.ts';
+import { aicfdProject, nasalSlicerProject } from './englinkProjects.ts';
 
 export const gameProjects: GameProject[] = [{
   slug: 'progress-at-play-2026', activityId: 'progress-at-play-2026', event: 'PROGRESS@PLAY 2026',
@@ -83,4 +84,4 @@ export const gameProjects: GameProject[] = [{
       takeaway: 'Clear consequences matter more than feature count. This project connected game rules with UI feedback and took a web-based game through saving, audio, and Windows packaging.',
     },
   },
-}, aiverseProject, museumProject, uiProject, teamManyStarProject];
+}, aiverseProject, museumProject, uiProject, teamManyStarProject, aicfdProject, nasalSlicerProject];

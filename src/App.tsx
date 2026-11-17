@@ -9,6 +9,7 @@ import WorkBreakdown from './WorkBreakdown';
 import ProjectImage from './ProjectImage';
 import AwardPhoto from './AwardPhoto';
 import type { Activity, Media, Project } from './types';
+const activityCategories = (item: Activity) => item.secondaryCategory ? [item.category, item.secondaryCategory] : [item.category];
 const date = (value: string) => value.replaceAll('-', '.');
 const period = (start?: string, end?: string, ongoing = '진행 중') => start ? `${date(start)} — ${end ? date(end) : ongoing}` : end ? `~ ${date(end)}` : '';
 function External({ href, children }: {
@@ -83,7 +84,7 @@ function ActivityList({ items }: {
 }) {
     const { t } = useLanguage();
     const { projects } = useContent();
-    return <ol className="timeline-list">{items.map(item => <li className={item.featured ? 'featured' : ''} key={item.id}><div className="timeline-date"><span>{period(item.startDate, item.endDate, t('진행 중'))}</span>{item.featured && <span className="highlight-label">{t("주요 활동")}</span>}</div><div className="timeline-body"><p className="eyebrow">{t(item.category)}{item.sample && ` / ${t('샘플')}`}</p><h3>{item.title}</h3>{item.role && <p className="role">{item.role}</p>}{item.description && <p>{item.description}</p>}{item.outcomes.length > 0 && <ul className="outcomes">{item.outcomes.map(outcome => <li key={outcome}>{outcome}</li>)}</ul>}<div className="activity-links">{gameProjects.filter(p => p.activityId === item.id).map(p => <Link className="text-link" key={p.slug} to={`/projects/${p.slug}`}>{t("프로젝트 보기")} ↗</Link>)}{item.projectSlug && projects.some(p => p.slug === item.projectSlug) && <Link className="text-link" to={`/works/${item.projectSlug}`}>{t("작품 보기 ↗")}</Link>}{item.externalUrl && <External href={item.externalUrl}>{t("관련 링크")}</External>}</div></div></li>)}</ol>;
+    return <ol className="timeline-list">{items.map(item => <li className={item.featured ? 'featured' : ''} key={item.id}><div className="timeline-date"><span>{period(item.startDate, item.endDate, t('진행 중'))}</span>{item.featured && <span className="highlight-label">{t("주요 활동")}</span>}</div><div className="timeline-body"><p className="eyebrow">{activityCategories(item).map(category => t(category)).join(" · ")}{item.sample && ` / ${t('샘플')}`}</p><h3>{item.title}</h3>{item.role && <p className="role">{item.role}</p>}{item.description && <p>{item.description}</p>}{item.outcomes.length > 0 && <ul className="outcomes">{item.outcomes.map(outcome => <li key={outcome}>{outcome}</li>)}</ul>}<div className="activity-links">{gameProjects.filter(p => p.activityId === item.id).map(p => <Link className="text-link" key={p.slug} to={`/projects/${p.slug}`}>{t("프로젝트 보기")} ↗</Link>)}{item.projectSlug && projects.some(p => p.slug === item.projectSlug) && <Link className="text-link" to={`/works/${item.projectSlug}`}>{t("작품 보기 ↗")}</Link>}{item.externalUrl && <External href={item.externalUrl}>{t("관련 링크")}</External>}</div></div></li>)}</ol>;
 }
 function ToolList({ tools }: {
     tools: string[];
@@ -94,12 +95,12 @@ function ToolList({ tools }: {
 function CompactActivities() {
     const { t } = useLanguage();
     const { sortedActivities } = useContent();
-    return <ol className="compact-activities">{sortedActivities.map(item => <li key={item.id}><time>{period(item.startDate, item.endDate, t('진행 중'))}</time><span className="compact-category">{t(item.category)}</span><span className="compact-title">{item.title}{item.outcomes.length > 0 && <span className="compact-outcome"> · {item.outcomes.join(' · ')}</span>}{item.role && <span className="compact-role"> · {item.role}</span>}</span></li>)}</ol>;
+    return <ol className="compact-activities">{sortedActivities.map(item => <li key={item.id}><time>{period(item.startDate, item.endDate, t('진행 중'))}</time><span className="compact-category">{activityCategories(item).map(category => t(category)).join(" · ")}</span><span className="compact-title">{item.title}{item.outcomes.length > 0 && <span className="compact-outcome"> · {item.outcomes.join(' · ')}</span>}{item.role && <span className="compact-role"> · {item.role}</span>}</span></li>)}</ol>;
 }
 function ActivityCards({ category }: { category: '프로젝트' | '수상' }) {
     const { sortedActivities, projects } = useContent();
     const { t, language } = useLanguage();
-    const items = sortedActivities.filter(item => item.category === category);
+    const items = sortedActivities.filter(item => activityCategories(item).includes(category));
     if (!items.length) return null;
     return <section id={category === '프로젝트' ? 'projects' : 'awards'} className="section page-width">
       <div className="section-heading"><h2>{t(category)}</h2><Link className="text-link" to={`/timeline?category=${encodeURIComponent(category)}`}>{t('상세 이력 보기')} →</Link></div>
@@ -110,8 +111,8 @@ function ActivityCards({ category }: { category: '프로젝트' | '수상' }) {
           <h3>{item.title}</h3><p className="award-result">{item.outcomes.join(' · ')}</p>
           {item.awardImage && <AwardPhoto src={item.awardImage} title={`${item.title} ${item.outcomes.join(' · ')}`} />}
         </article>;
-        return <article className={game ? 'activity-card game-preview-card' : 'activity-card'} key={item.id}>
-          {game && <Link className="game-preview-image" to={`/projects/${game.slug}`} aria-label={item.title}><ProjectImage image={game.screenshots[0]} alt={item.title} /></Link>}
+        return <article className={game?.screenshots.length ? 'activity-card game-preview-card' : 'activity-card'} key={item.id}>
+          {game?.screenshots[0] && <Link className="game-preview-image" to={`/projects/${game.slug}`} aria-label={item.title}><ProjectImage image={game.screenshots[0]} alt={item.title} /></Link>}
           <div className="activity-card-content"><p className="eyebrow">{period(item.startDate, item.endDate, t('진행 중'))}</p>
           <h3>{game ? <Link to={`/projects/${game.slug}`}>{item.title}</Link> : item.title}</h3>
           {item.role && <p className="role">{item.role}</p>}{(item.cardSummary || item.description) && <p>{item.cardSummary || item.description}</p>}
@@ -189,8 +190,8 @@ function Timeline() {
     const [year, setYear] = useState('전체');
     const [category, setCategory] = useState(() => new URLSearchParams(window.location.search).get('category') || '전체');
     const years = [...new Set(activities.flatMap(a => { const start = Number((a.startDate || a.endDate || '').slice(0, 4)); const end = a.endDate ? Number(a.endDate.slice(0, 4)) : new Date().getFullYear(); return Array.from({ length: Math.max(1, end - start + 1) }, (_, i) => String(start + i)); }))].sort().reverse();
-    const filtered = sortedActivities.filter(a => (category === '전체' || a.category === category) && (year === '전체' || ((a.startDate || a.endDate || '').slice(0, 4) <= year && (!a.endDate || a.endDate.slice(0, 4) >= year))));
-    return <div className="page-width page-section timeline-page"><PageTitle eyebrow="THE PROCESS / ACTIVITY LOG" title={t("활동 기록")} description={t("학력, 교육, 프로젝트, 교내활동, 수상, 장학과 행사 참가 이력을 최신순으로 기록합니다.")}/><div className="filters"><Filter label={t("연도")} value={year} onChange={setYear} options={years}/><Filter label={t("활동 분류")} value={category} onChange={setCategory} options={[...new Set(activities.map(a => a.category))]}/><p className="result-count" role="status">{language === 'en' ? `${filtered.length} activities · Newest first` : `${filtered.length}개 활동 · 최신순`}</p></div>{activities.some(a => a.sample) && <p className="sample-notice">{t("샘플로 표시된 활동은 입력 형식을 보여주는 예시입니다.")}</p>}{filtered.length ? <ActivityList items={filtered}/> : <Empty onReset={() => { setYear('전체'); setCategory('전체'); }}/>}</div>;
+    const filtered = sortedActivities.filter(a => (category === '전체' || activityCategories(a).includes(category as Activity['category'])) && (year === '전체' || ((a.startDate || a.endDate || '').slice(0, 4) <= year && (!a.endDate || a.endDate.slice(0, 4) >= year))));
+    return <div className="page-width page-section timeline-page"><PageTitle eyebrow="THE PROCESS / ACTIVITY LOG" title={t("활동 기록")} description={t("학력, 교육, 프로젝트·근로, 교내활동, 수상, 장학과 행사 참가 이력을 최신순으로 기록합니다.")}/><div className="filters"><Filter label={t("연도")} value={year} onChange={setYear} options={years}/><Filter label={t("활동 분류")} value={category} onChange={setCategory} options={[...new Set(activities.flatMap(activityCategories))]}/><p className="result-count" role="status">{language === 'en' ? `${filtered.length} activities · Newest first` : `${filtered.length}개 활동 · 최신순`}</p></div>{activities.some(a => a.sample) && <p className="sample-notice">{t("샘플로 표시된 활동은 입력 형식을 보여주는 예시입니다.")}</p>}{filtered.length ? <ActivityList items={filtered}/> : <Empty onReset={() => { setYear('전체'); setCategory('전체'); }}/>}</div>;
 }
 function WorkDetail() {
     const { t } = useLanguage();
