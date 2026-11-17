@@ -1,4 +1,8 @@
 import type { GameProject } from '../types';
+import { aiverseProject } from './aiverseProject.ts';
+import { museumProject } from './museumProject.ts';
+import { uiProject } from './uiProject.ts';
+import { teamManyStarProject } from './teamManyStarProject.ts';
 
 export const gameProjects: GameProject[] = [{
   slug: 'progress-at-play-2026', activityId: 'progress-at-play-2026', event: 'PROGRESS@PLAY 2026',
@@ -27,10 +31,10 @@ export const gameProjects: GameProject[] = [{
         { title: '거실 안의 생존과 거실 밖의 위험', description: '사건 선택 → 배급·치료·대화 → 원정 준비 → 하루 마감으로 이어지는 생존 루프를 설계했습니다. 50개 사건과 100개 선택지에 기후 위기, 노동, 고령층 소외, 주거·의료 불평등을 담았습니다. 원정은 캐릭터 상태와 장비에 따라 귀환과 부상·감염 위험이 달라집니다.' },
       ],
       responsibilities: [
-        '전체 콘셉트·세계관과 가족 4인의 역할 및 가치관, 사회 문제 기반 사건·분기·다중 엔딩 설계',
-        '자원·가족 상태·원정·장비·방문자·구조 신호 시스템 및 DAY 18 공동체 보상 구현',
-        '디스토피아 거실 UI와 상태별 캐릭터 이미지 구성, 상황별 BGM·볼륨 설정 구현',
-        '자동 저장·백업 복구·이어하기와 Electron 기반 Windows portable EXE 빌드',
+        '사회 문제를 생존 게임으로 전달하는 콘셉트·세계관 기획, 가족의 역할·가치관과 사건·분기·엔딩 시나리오 작성',
+        'Visual Studio Code에서 JavaScript로 자원·가족 상태·원정·장비·방문자·구조 신호 및 DAY 18 보상 로직 구현',
+        'HTML·CSS로 거실 UI와 상태별 캐릭터 표시 구성, JavaScript로 상황별 BGM·볼륨 설정 연결',
+        'LocalStorage로 자동 저장·백업 복구·이어하기 구현, Electron·electron-builder로 portable EXE 빌드',
       ],
       solutions: [
         { title: '수치와 캐릭터 상태를 같은 순간에 전달', description: '배급 부족이 당일 허기·갈증에 반영되도록 수정하고, 상태 수치에 따라 표정과 UI 경고가 즉시 바뀌게 연결했습니다. 플레이어가 선택의 결과를 바로 이해하도록 개선했습니다.' },
@@ -60,10 +64,10 @@ export const gameProjects: GameProject[] = [{
         { title: 'Survival inside. Risk outside.', description: 'The daily loop moves from an event choice to rationing, treatment and conversation, expedition preparation, and ending the day. Fifty events and 100 choices explore climate crisis, labor, elderly isolation, and housing and healthcare inequality. Expedition outcomes and injury or infection risks depend on character status and equipment.' },
       ],
       responsibilities: [
-        'Designed the concept, world, four family members, social events, branching choices, and multiple endings.',
-        'Implemented resources, family status, expeditions, equipment, visitors, rescue signals, and the hidden DAY 18 community reward.',
-        'Created the dystopian living-room UI and character-state images, and implemented contextual BGM and volume controls.',
-        'Implemented autosave, backup recovery, continue, and Windows portable EXE packaging with Electron.',
+        'Planned how social issues translate into a survival game, writing the world, family roles and values, events, branching choices, and endings.',
+        'Implemented resource, family, expedition, equipment, visitor, rescue, and DAY 18 reward logic in JavaScript using Visual Studio Code.',
+        'Built the living-room UI and character-state display in HTML/CSS and connected contextual BGM and volume controls in JavaScript.',
+        'Implemented autosave and recovery with LocalStorage and packaged a portable EXE with Electron and electron-builder.',
       ],
       solutions: [
         { title: 'Make state changes visible immediately', description: 'Applied ration shortages to hunger and thirst on the same day, and synchronized facial expressions and UI warnings with status values so the consequences of a choice are immediately clear.' },
@@ -79,4 +83,4 @@ export const gameProjects: GameProject[] = [{
       takeaway: 'Clear consequences matter more than feature count. This project connected game rules with UI feedback and took a web-based game through saving, audio, and Windows packaging.',
     },
   },
-}];
+}, aiverseProject, museumProject, uiProject, teamManyStarProject];

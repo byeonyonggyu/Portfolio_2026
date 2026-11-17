@@ -147,3 +147,41 @@ UI 번역은 `src/i18n.tsx`, 활동·작품·프로필의 영어 콘텐츠는 `s
 콘텐츠와 한국어/영어 번역은 `src/data/gameProjects.ts`, 화면은 `src/GameProjectPage.tsx`에서 관리합니다. 원본 이미지는 `Asset/Projects/PROGRESS/`에 보존하고 웹용 이미지와 작은 썸네일은 `public/images/progress/`에 저장했습니다. 이미지 5장의 원본은 약 5.7MB, 웹용 본문/썸네일 합계는 약 1.1MB입니다.
 
 갤러리는 썸네일 클릭, 좌우 방향키, Home/End, 이전/다음 버튼을 지원합니다. 큰 이미지에서 확대 보기를 열고 닫기 버튼 또는 Esc로 닫을 수 있습니다. 제공되지 않은 다운로드 파일·출시일·리뷰·평가는 표시하지 않습니다. 게임의 AI 개발 보조와 생성형 이미지/음원 활용은 사용 기술에 명시했습니다. GitHub Pages 빌드 시 프로젝트 상세 경로에도 index.html을 생성합니다.
+
+## Portfolio 02 셰이더·텍스처 브레이크다운
+
+02번 상세(`/works/portfolio-02`)에 Photoshop 텍스처 2종과 Amplify Shader Editor 그래프 2종을 추가했습니다. 원본은 `Asset/SelectedWork/02_Portfolio/`, 공개용 이미지는 `public/images/portfolio-02/`에 보존했습니다. 무손실 WebP 변환으로 원본 픽셀과 투명도를 유지하며, 그래프는 확대 창에서 원본 크기로 스크롤해 확인할 수 있습니다.
+
+텍스트는 `src/data/projects.ts`의 02번, 영문은 `src/data/english.ts`의 02번에서 수정합니다. `breakdown.kind`가 `texture`면 형태 비교용 카드, `shader`면 넓은 그래프 레이아웃을 사용합니다. 각 단계의 `notes`는 설명 목록입니다. 이미지 확대 UI는 `src/WorkBreakdown.tsx`에서 관리합니다. 그래프에서 확인되는 UV/Panner·노이즈·마스크·Vertex Color·Fresnel·Vertex Offset 구성을 설명했으며 미측정 성능 수치는 추가하지 않았습니다.
+
+## 01·03·04 제작 자료 및 시퀀스 연출
+
+01번은 텍스처 3종/셰이더 4종, 03번은 텍스처 3종/셰이더 3종, 04번은 텍스처 3종/셰이더 2종을 추가했습니다. 원본은 `Asset/SelectedWork/작품번호_Portfolio/`, 무손실 공개 이미지는 `public/images/portfolio-작품번호/`에 있습니다. 이미지의 실제 width/height를 데이터에 저장해 레이아웃 비율을 유지합니다.
+
+네 작품 모두 `production` 데이터로 Timeline 기반 애니메이션/이펙트 시퀀스, 카메라 무빙, 카메라 색상 조절로 구현한 임팩트 프레임을 표시합니다. 사용자가 확인한 구현 경험을 기술했으며 특정 후처리 패키지·Volume·Cinemachine·API는 확인되지 않아 명시하지 않았습니다. 메인 주요 역량도 동일한 실제 경험으로 교체했습니다. 한국어는 `projects.ts`/`profile.ts`, 영어는 `english.ts`에서 관리합니다.
+
+## AI:VERSE 페스티벌 — AI 인법 배틀
+
+`/projects/aiverse-festival`에 AI 인법 배틀 상세를 추가했습니다. 원본 이미지 8장은 `Asset/Projects/AIVERSE_Festival/`, 본문용/썸네일 WebP는 `public/images/aiverse/`에 있습니다. 한영 소개, 담당 작업, 문제 해결, 기술, 배운 점은 `src/data/aiverseProject.ts`에서 관리하며 `gameProjects.ts`에 연결됩니다.
+
+진행 상태는 진행 중으로 표시하고 기존 종료일은 제거했습니다. .exe 배포파일 제작, 페스티벌 발표와 부스 운영 예정 상태를 구분해 기재했습니다. 담당 작업에는 Unity–MCP 연결 제작 환경, Amplify Shader Editor 셰이더 제작, Particle System 공격 이펙트 제작을 포함했습니다. 프로젝트별 context 필드로 AI 페스티벌에 PROGRESS의 GAME 부문 참가 문구가 잘못 표시되지 않도록 했습니다. 썸네일이 5장을 넘으면 좌우 스크롤 목록을 사용합니다.
+
+## 박물관 협업 — 박물관의 황혼: 여월의 밤
+
+`/projects/bucheon-museum-game`에 카드 기반 턴제 RPG 프로젝트 상세를 추가했습니다. 메인에는 부천시립박물관 협업 턴제 RPG 제작 카드와 짧은 설명을 표시하고, 타임라인에서도 상세 페이지로 연결됩니다.
+
+한국어/영어 본문은 `src/data/museumProject.ts`, 연결은 `src/data/gameProjects.ts`에서 관리합니다. 원본 스크린샷 8장은 `Asset/Projects/Bucheon_CityMuseum/`, 웹용 이미지/썸네일은 `public/images/museum/`에 있습니다. 소개 3개 항목, 담당 작업 6개 항목, 문제 해결 4건과 기술·배운 점으로 제공 내용을 정리했습니다. 미제공 다운로드·출시일·성과 수치는 추가하지 않았습니다.
+
+
+### U&I 발표 및 수상 사진
+- U&I 소개·담당 작업: `src/data/uiProject.ts` (한글 기획안 기반, 제안 기능과 실제 제작 구분).
+- 발표 사진은 새로 제공한 02를 대표 이미지로 사용하며 01·02 사진을 추가 자르기 없이 표시합니다. 캐릭터 제작 아래에 01 발표 참여, 02 발표 진행 기록을 배치했습니다.
+- 수상 사진: `src/data/activities.ts`의 `awardImage`, 배포 이미지: `public/images/awards/`.
+- U&I 제작 도구는 사용자 확인 내용을 반영했습니다: Maya 캐릭터 제작, Photoshop 텍스처 직접 드로잉.
+
+
+### TeamManyStar 및 이미지 확대
+- TeamManyStar 소개·담당 작업·완성 장면·셰이더 브레이크다운: `src/data/teamManyStarProject.ts`.
+- TeamManyStar와 U&I는 `layout: 'case-study'`로 큰 갤러리, 프로젝트 정보, 담당 작업, 제작 과정을 함께 표시합니다.
+- 첫 이미지: `initialImage`, 카드의 대표 사진: `screenshots[0]`.
+- 수상 사진은 클릭/Enter로 확대하고 닫기 버튼·Esc·배경 클릭으로 닫을 수 있습니다.

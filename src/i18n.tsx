@@ -16,6 +16,8 @@ const english: Record<string, string> = {
   '공모전 수상 이력을 모았습니다.': 'Awards received in competitions.',
   '상세 이력 보기': 'View activity details', '주요 활동': 'Featured', '진행 중': 'Present',
   'Unity 엔진 · Particle System으로 제작': 'Created in Unity with the Particle System',
+  'Unity Particle System · Timeline 애니메이션·카메라 제어 · 임팩트 프레임 구현': 'Unity Particle System · Timeline animation & camera control · Impact frames',
+  '시퀀스 & 카메라 연출': 'Sequence & camera direction',
   '주요 역량': 'Skills', '소개 및 연락처': 'About & contact', '이력서 보기 ↗': 'View résumé ↗', '연락처 준비 중': 'Contact information coming soon',
   '샘플 작품': 'Sample work', '샘플': 'Sample', '사용 도구': 'Tools', '담당 범위': 'Role', '제작 기간': 'Production dates',
   '영상 준비 중 · 콘텐츠 파일에서 추가해 주세요': 'Video coming soon · Add a video in the content data',
@@ -44,8 +46,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     document.documentElement.lang = language;
     document.querySelector('meta[name="description"]')?.setAttribute('content', language === 'en'
-      ? 'Real-time VFX artist portfolio: selected work, projects, awards, and activity.'
-      : '실시간 VFX 아티스트 포트폴리오. 대표 작품, 프로젝트, 수상과 활동 이력을 확인하세요.');
+      ? 'Yonggyu Byeon — VFX Artist: game effects, AI-assisted game development, projects, awards, and activity.'
+      : 'VFX Artist 변용규의 포트폴리오. 게임 이펙트, AI 활용 게임 제작, 협업 프로젝트와 활동 기록.');
     try { localStorage.setItem('portfolio-language', language); } catch { /* Storage can be disabled. */ }
   }, [language]);
   const t = (text: string) => language === 'en' ? english[text] || text : text;

@@ -32,6 +32,7 @@ export const activities: Activity[] = [
   },
   {
     "id": "samsung-essay-award",
+    "awardImage": "/images/awards/essay-2023.webp",
     "startDate": "2023-08-27",
     "endDate": "2023-11-04",
     "category": "수상",
@@ -44,6 +45,7 @@ export const activities: Activity[] = [
   },
   {
     "id": "ui-festival-2023",
+    "cardSummary": "AI 헬스 컨설턴트 캐릭터 기획·제작 및 발표.",
     "startDate": "2023-09-30",
     "endDate": "2023-11-24",
     "category": "프로젝트",
@@ -54,6 +56,7 @@ export const activities: Activity[] = [
   },
   {
     "id": "samsung-character-award",
+    "awardImage": "/images/awards/character-2025.webp",
     "startDate": "2025-08-18",
     "endDate": "2025-10-18",
     "category": "수상",
@@ -78,6 +81,7 @@ export const activities: Activity[] = [
   },
   {
     "id": "team-many-star",
+    "cardSummary": "환경 연출·공격 스킬 이펙트 제작",
     "startDate": "2026-01-04",
     "category": "프로젝트",
     "title": "TeamManyStar 인디게임제작팀",
@@ -98,30 +102,32 @@ export const activities: Activity[] = [
     "id": "bucheon-museum-game",
     "startDate": "2026-09-10",
     "category": "프로젝트",
-    "title": "부천시립박물관 협업 인디게임 제작",
+    "title": "부천시립박물관 협업 턴제 RPG 제작",
     "role": "",
-    "description": "",
-    "outcomes": []
+    "description": "박물관의 황혼: 여월의 밤 — 박물관 탐험·유물 복원·수집을 연결한 2D 카드 기반 턴제 RPG 제작.",
+    "outcomes": [],
+    "cardSummary": "카드 기반 턴제 RPG 제작"
   },
   {
     "id": "progress-at-play-2026",
     "startDate": "2026-09-10",
     "endDate": "2026-10-11",
     "category": "프로젝트",
-    "title": "PROGRESS@PLAY 2026",
+    "title": "PROGRESS@PLAY 2026 경연대회 게임 부문 참가",
     "role": "",
-    "description": "임계점의 거실 · 소셜임팩트 디지털아트 경연대회 GAME 부문 참가",
-    "outcomes": []
+    "description": "소셜임팩트 디지털아트 경연대회 GAME 부문 참가. 시뮬레이션 게임 제작.",
+    "outcomes": [],
+    "cardSummary": "생존 시뮬레이션 게임 제작"
   },
   {
     "id": "aiverse-festival",
     "startDate": "2026-10-01",
-    "endDate": "2026-11-27",
     "category": "프로젝트",
     "title": "AI:VERSE 페스티벌",
     "role": "",
-    "description": "페스티벌 참가",
-    "outcomes": []
+    "description": "손동작 인식 기반 2D 배틀 체험 제작 진행 중. .exe 배포파일 제작 및 페스티벌 발표·부스 운영 예정.",
+    "outcomes": [],
+    "cardSummary": "손동작 인식 배틀 게임 제작"
   },
   {
     "id": "samsung-dream-scholarship",
